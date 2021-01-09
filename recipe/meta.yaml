@@ -11,8 +11,8 @@ source:
     - verbosity.patch
 
 build:
-  number: 0
-  skip: True  # [not linux]
+  number: 1
+  skip: True  # [not unix]
   missing_dso_whitelist:
     - '*'
 
@@ -25,21 +25,27 @@ requirements:
     - texinfo
     - bison
     - flex
-    - gettext
     - git
     - help2man
     - make
     - texinfo
     - unzip
     - wget
+    - sed  # [osx]
+    - gawk  # [osx]
   host:
     - ncurses
     - libtool
     - flex
     - bison
+    - bash  # [osx]
+    - gettext  # [osx]
   run:
     - ncurses
     - libtool
+    - bash  # [osx]
+    - sed  # [osx]
+    - gawk  # [osx]
 
 test:
   commands:

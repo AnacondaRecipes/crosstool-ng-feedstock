@@ -3,10 +3,15 @@
 # Script and meta.yaml taken from https://github.com/AnacondaRecipes/aggregate/blob/088dd9dc0296bd0e5fdba1b3d2f2c2babd359327/crosstool-ng-feedstock/recipe/build.sh
 
 export EXTRA_CFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses"
-export EXTRA_LDFLAGS="-L${PREFIX}/lib -Wl,-rpath,${PREFIX}/lib -lncursesw"
-# -rpath-link is needed because libncursesw.so dependes on libtinfo.so and
-# configure will fail to find ncurses without it (if using the conda ncurses
-# package).
+if [[ ${target_platform} =~ .*inux ]]; then
+  # -rpath-link is needed because libncursesw.so depends upon libtinfo.so and
+  # configure will fail to find ncurses without it if using the conda ncurses
+  # package.
+  export EXTRA_LDFLAGS="-L${PREFIX}/lib -Wl,-rpath,${PREFIX}/lib -lncursesw"
+  export CPPFLAGS="-I${PREFIX}/include -L${PREFIX}/lib -Wl,-rpath-link,${PREFIX}/lib"
+else
+  export CPPFLAGS="-I${PREFIX}/include -L${PREFIX}/lib"
+fi
 
 # These get baked into paths.mk but we do not relocate them nor add
 # run requirements for them.
@@ -30,7 +35,6 @@ unset ncurses
 mkdir tmp
 mv $SRC_DIR/packages/glibc/2.17/*-glibc-*.patch tmp
 
-export CPPFLAGS="-I${PREFIX}/include -L${PREFIX}/lib -Wl,-rpath-link,${PREFIX}/lib"
 if [[ $(uname) == Darwin ]]; then
   export DYLD_FALLBACK_LIBRARY_PATH=${PREFIX}/lib
 fi

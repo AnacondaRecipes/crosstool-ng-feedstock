@@ -1,4 +1,5 @@
 {% set version = "1.24.0.132_gc74611b1" %}
+{% set bootstrapping = os.environ.get('CONDA_BUILD_BOOTSTRAPPING', '') %}
 
 package:
   name: crosstool-ng
@@ -11,11 +12,21 @@ source:
     - verbosity.patch
 
 build:
-  number: 1
+{% if bootstrapping == 'yes' %}
+  number: 2
+{% else %}
+  number: 3
+{% endif %}
   skip: True  # [not unix]
   missing_dso_whitelist:
     - '*'
+{% if bootstrapping == 'yes' %}
+  string: h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}_bootstrapping
+{% else %}
+  string: h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
+{% endif %}
 
+{% if bootstrapping != 'yes' %}
 requirements:
   build:
     # TODO We need some [not bootstrapping] selector or something?
@@ -46,6 +57,7 @@ requirements:
     - bash  # [osx]
     - sed  # [osx]
     - gawk  # [osx]
+{% endif %}
 
 test:
   commands:

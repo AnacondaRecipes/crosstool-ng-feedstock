@@ -61,7 +61,7 @@ requirements:
 
 test:
   commands:
-    - ct-ng -h
+    - ct-ng
     - test -f $PREFIX/share/crosstool-ng/packages/glibc/2.17/1272-glibc-rh1211100.patch
     - test -f $PREFIX/share/crosstool-ng/config/versions/linux.in
 
@@ -81,3 +81,5 @@ extra:
   recipe-maintainers:
     - isuruf
     - beckermr
+    - katietz
+    - mingwandroid

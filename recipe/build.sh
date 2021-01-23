@@ -30,7 +30,12 @@ export OBJDUMP="/usr/bin/env objdump"
 export READELF="/usr/bin/env readelf"
 export PATCH="/usr/bin/env patch"
 export GPERF="/usr/bin/env gperf"
-unset ncurses
+# Rather than unsetting all these it may be easier to pass -c to bash
+# when we call bootstrap.
+unset ncurses expat autoconf automake binutils bison cloog dtc duma \
+      elf2flt expat gcc gdb gettext glibc gmp isl libelf libiconv \
+      libtool linux ltrace m4 make moxiebox mpc mpfr musl ncurses \
+      newlib picolibc strace zlib
 
 mkdir tmp
 mv $SRC_DIR/packages/glibc/2.17/*-glibc-*.patch tmp

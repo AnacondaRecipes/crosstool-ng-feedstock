@@ -1,4 +1,4 @@
-{% set version = "1.24.0.132_gc74611b1" %}
+{% set version = "1.24.0_280" %}
 {% set bootstrapping = os.environ.get('CONDA_BUILD_BOOTSTRAPPING', '') %}
 
 package:
@@ -13,9 +13,9 @@ source:
 
 build:
 {% if bootstrapping == 'yes' %}
-  number: 2
-{% else %}
   number: 3
+{% else %}
+  number: 4
 {% endif %}
   skip: True  # [not unix]
   missing_dso_whitelist:

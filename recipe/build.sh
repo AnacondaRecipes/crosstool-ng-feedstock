@@ -37,9 +37,6 @@ unset ncurses expat autoconf automake binutils bison cloog dtc duma \
       libtool linux ltrace m4 make moxiebox mpc mpfr musl ncurses \
       newlib picolibc strace zlib
 
-mkdir tmp
-mv $SRC_DIR/packages/glibc/2.17/*-glibc-*.patch tmp
-
 if [[ $(uname) == Darwin ]]; then
   export DYLD_FALLBACK_LIBRARY_PATH=${PREFIX}/lib
 fi
@@ -48,5 +45,3 @@ getconf ARG_MAX
 ./configure --prefix=${PREFIX} || (cat config.log && exit 1)
 make -j${CPU_COUNT} ${VERBOSE_AT}
 make install
-
-mv tmp/*.patch $PREFIX/share/crosstool-ng/packages/glibc/2.17/

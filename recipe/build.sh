@@ -44,7 +44,7 @@ fi
 ARG_MAX=$(getconf ARG_MAX)
 if (( ${ARG_MAX} <= 2621440 )); then
   mkdir tmp
-  mv tmp/*.patch $PREFIX/share/crosstool-ng/packages/glibc/2.17
+  mv $SRC_DIR/packages/glibc/2.17/*-glibc-*.patch tmp
 fi
 ./bootstrap
 ./configure --prefix=${PREFIX} || (cat config.log && exit 1)

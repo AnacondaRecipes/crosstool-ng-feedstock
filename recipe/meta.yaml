@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  git_url: https://github.com/conda-forge/crosstool-ng.git
+  git_url: https://github.com/mingwandroid/crosstool-ng.git
   git_tag: bootstrapping
   patches:
     - verbosity.patch

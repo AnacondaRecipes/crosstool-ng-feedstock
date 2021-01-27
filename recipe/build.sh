@@ -42,7 +42,7 @@ if [[ $(uname) == Darwin ]]; then
 fi
 # Avoid make[2]: execvp: /bin/sh: Argument list too long
 ARG_MAX=$(getconf ARG_MAX)
-if [[ $(${ARG_MAX} <= 2621440) ]]; then
+if (( ${ARG_MAX} <= 2621440 )); then
   mkdir tmp
   mv tmp/*.patch $PREFIX/share/crosstool-ng/packages/glibc/2.17
 fi
@@ -50,6 +50,6 @@ fi
 ./configure --prefix=${PREFIX} || (cat config.log && exit 1)
 make -j${CPU_COUNT} ${VERBOSE_AT}
 make install
-if [[ $(${ARG_MAX} <= 2621440) ]]; then
+if (( ${ARG_MAX} <= 2621440 )); then
   mv tmp/*.patch $PREFIX/share/crosstool-ng/packages/glibc/2.17/
 fi

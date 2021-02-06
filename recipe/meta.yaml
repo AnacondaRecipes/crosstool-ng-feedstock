@@ -1,5 +1,5 @@
-{% set version = "1.24.0_280" %}
-{% set bootstrapping = os.environ.get('CONDA_BUILD_BOOTSTRAPPING', '') %}
+{% set version = "1.24.0_286" %}
+{% set bootstrapping = os.environ.get('CONDA_BUILD_BOOTSTRAPPING', 'no') %}
 
 package:
   name: crosstool-ng
@@ -7,7 +7,7 @@ package:
 
 source:
   git_url: https://github.com/mingwandroid/crosstool-ng.git
-  git_tag: bootstrapping
+  git_tag: bootstrapping-10.2
   patches:
     - verbosity.patch
 
@@ -21,7 +21,7 @@ build:
   missing_dso_whitelist:
     - '*'
 {% if bootstrapping == 'yes' %}
-  string: h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}_bootstrapping
+  string: h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}_bootstrapping-10.2
 {% else %}
   string: h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
 {% endif %}

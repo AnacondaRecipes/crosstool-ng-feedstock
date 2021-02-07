@@ -21,7 +21,7 @@ build:
   missing_dso_whitelist:
     - '*'
 {% if bootstrapping == 'yes' %}
-  string: h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}_bootstrapping-10.2
+  string: h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}_bootstrapping_10_2
 {% else %}
   string: h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
 {% endif %}

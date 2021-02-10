@@ -1,5 +1,4 @@
 {% set version = "1.24.0_286" %}
-{% set bootstrapping = os.environ.get('CONDA_BUILD_BOOTSTRAPPING', 'no') %}
 
 package:
   name: crosstool-ng

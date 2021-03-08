@@ -30,6 +30,7 @@ requirements:
   build:
     # TODO We need some [not bootstrapping] selector or something?
     - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - autoconf
     - automake
     - texinfo

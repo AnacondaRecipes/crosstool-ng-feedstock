@@ -35,6 +35,7 @@ requirements:
     - automake
     - texinfo
     - bison
+    - file
     - flex
     - git
     - help2man

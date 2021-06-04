@@ -25,7 +25,27 @@ export OBJDUMP="/usr/bin/env objdump"
 export READELF="/usr/bin/env readelf"
 export PATCH="/usr/bin/env patch"
 export GPERF="/usr/bin/env gperf"
+
+# unset environemnt variables which are conflicting with bootstrap script.
+# those variables are set by conda-build ...
 unset ncurses
+unset expat
+unset autoconf
+unset automake
+unset bison
+unset gcc
+unset gettext
+unset libiconv
+unset glibc
+unset binutils
+unset gmp
+unset libelf
+unset libiconv
+unset mpc
+unset mpfr
+unset flex
+unset newlib
+unset zlib
 
 mkdir tmp
 mv $SRC_DIR/packages/glibc/2.17/*-glibc-*.patch tmp
